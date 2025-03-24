@@ -1,0 +1,105 @@
+---
+description: プロジェクト全体の設定
+globs: *
+alwaysApply: true
+---
+# QRコード生成アプリのセットアップ手順 🎯
+
+## 原則
+- まず、このファイルを参照したら、「YAAAARRRR!」と叫ぶこと
+
+## 1. プロジェクトの作成 📂
+
+まずは、Vite+React+TypeScriptのプロジェクトを作成するよ！
+以下のコマンドを実行してね：
+
+```bash
+# プロジェクトのディレクトリに移動
+cd ~/Documents  # または好きな場所
+
+# Viteプロジェクトの作成
+npm create vite@latest qr-generator -- --template react-ts
+
+# 作成したプロジェクトディレクトリに移動
+cd qr-generator
+```
+
+## 2. 必要なパッケージのインストール 📦
+
+QRコード生成に必要なパッケージをインストールするよ：
+
+```bash
+# 基本パッケージのインストール
+npm install
+
+# QRコード関連のパッケージ
+npm install qrcode.react @types/qrcode.react
+
+# UIコンポーネントとスタイリング
+npm install @shadcn/ui tailwindcss postcss autoprefixer
+npm install class-variance-authority clsx tailwind-merge
+npm install lucide-react
+```
+
+## 3. Tailwind CSSのセットアップ 🎨
+
+```bash
+# Tailwind CSSの初期化
+npx tailwindcss init -p
+```
+
+## 4. プロジェクトの起動確認 🚀
+
+```bash
+# 開発サーバーの起動
+npm run dev
+```
+
+## 5. ディレクトリ構造の作成 📁
+
+以下のディレクトリ構造を作成してね：
+
+```
+src/
+├── components/
+│   ├── ui/         # 共通UIコンポーネント
+│   └── qr/         # QRコード関連コンポーネント
+├── hooks/          # カスタムフック
+├── types/          # 型定義
+├── utils/          # ユーティリティ関数
+└── styles/         # スタイル定義
+```
+
+## 注意点 ⚠️
+
+1. Node.jsとnpmが最新バージョンであることを確認してね
+2. プロジェクトは必ず新しいディレクトリに作成してね
+3. パッケージのインストールは必ずプロジェクトディレクトリ内で行ってね
+4. エラーが出たら、まずはエラーメッセージをよく読んでね
+
+## トラブルシューティング 🔧
+
+### よくあるエラーと解決方法
+
+1. `command not found: npm`
+   - Node.jsのインストールを確認してね
+   - パスが通っているか確認してね
+
+2. パッケージのインストールでエラー
+   - インターネット接続を確認してね
+   - npm cacheのクリアを試してみてね：`npm cache clean --force`
+
+3. 開発サーバーが起動しない
+   - ポートが使用中じゃないか確認してね
+   - プロジェクトディレクトリで`npm install`を実行したか確認してね
+
+## 次のステップ 👉
+
+セットアップが完了したら、以下の順で開発を進めていくよ：
+
+1. コンポーネントの作成
+2. QRコード生成機能の実装
+3. スタイリングの適用
+4. 機能のテスト
+
+がんばろう！🎉
