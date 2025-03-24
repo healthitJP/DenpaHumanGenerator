@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { DataType, QRInputData, VCardData, WifiData, GeoData, CalendarData, SmsData, CryptoData } from '../../../../types/qr'
 
 interface DataInputFormProps {
@@ -41,7 +40,7 @@ export const DataInputForm: React.FC<DataInputFormProps> = ({
   }
 
   const handleVCardChange = (field: keyof VCardData, value: string) => {
-    if (typeof input.content !== 'string') {
+    if (typeof input.content !== 'string' && input.type === 'vcard') {
       onInputChange({
         ...input,
         content: { ...input.content, [field]: value }
@@ -52,13 +51,14 @@ export const DataInputForm: React.FC<DataInputFormProps> = ({
   const renderForm = () => {
     switch (input.type) {
       case 'vcard':
+        const vCardData = input.content as VCardData
         return (
           <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">姓</label>
               <input
                 type="text"
-                value={typeof input.content !== 'string' ? input.content.lastName : ''}
+                value={vCardData.lastName}
                 onChange={(e) => handleVCardChange('lastName', e.target.value)}
                 className="w-full p-2 border rounded-md"
               />
@@ -67,7 +67,7 @@ export const DataInputForm: React.FC<DataInputFormProps> = ({
               <label className="block text-sm font-medium text-gray-700 mb-1">名</label>
               <input
                 type="text"
-                value={typeof input.content !== 'string' ? input.content.firstName : ''}
+                value={vCardData.firstName}
                 onChange={(e) => handleVCardChange('firstName', e.target.value)}
                 className="w-full p-2 border rounded-md"
               />
@@ -76,7 +76,7 @@ export const DataInputForm: React.FC<DataInputFormProps> = ({
               <label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
               <input
                 type="email"
-                value={typeof input.content !== 'string' ? input.content.email || '' : ''}
+                value={vCardData.email || ''}
                 onChange={(e) => handleVCardChange('email', e.target.value)}
                 className="w-full p-2 border rounded-md"
               />
@@ -85,7 +85,7 @@ export const DataInputForm: React.FC<DataInputFormProps> = ({
               <label className="block text-sm font-medium text-gray-700 mb-1">電話番号</label>
               <input
                 type="tel"
-                value={typeof input.content !== 'string' ? input.content.phone || '' : ''}
+                value={vCardData.phone || ''}
                 onChange={(e) => handleVCardChange('phone', e.target.value)}
                 className="w-full p-2 border rounded-md"
               />
