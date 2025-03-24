@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { QRCodeSVG } from 'qrcode.react'
 import { ConfigPanel } from './ConfigPanel'
 import { PreviewPanel } from './PreviewPanel'
 import { ExportPanel } from './ExportPanel'
