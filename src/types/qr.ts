@@ -1,4 +1,4 @@
-export type DataType = 'text' | 'url' | 'tel' | 'email' | 'vcard'
+export type DataType = 'text' | 'url' | 'tel' | 'email' | 'vcard' | 'wifi' | 'geo' | 'calendar' | 'sms' | 'crypto'
 
 export interface VCardData {
   firstName: string
@@ -11,9 +11,40 @@ export interface VCardData {
   url?: string
 }
 
+export interface WifiData {
+  ssid: string
+  password: string
+  encryption: 'WPA' | 'WEP' | 'nopass'
+  hidden?: boolean
+}
+
+export interface GeoData {
+  latitude: number
+  longitude: number
+}
+
+export interface CalendarData {
+  title: string
+  startDate: string
+  endDate?: string
+  description?: string
+  location?: string
+}
+
+export interface SmsData {
+  phoneNumber: string
+  message: string
+}
+
+export interface CryptoData {
+  type: 'BTC' | 'ETH' | 'XRP'
+  address: string
+  amount?: number
+}
+
 export interface QRInputData {
   type: DataType
-  content: string | VCardData
+  content: string | VCardData | WifiData | GeoData | CalendarData | SmsData | CryptoData
 }
 
 export interface QRCodeConfig {
