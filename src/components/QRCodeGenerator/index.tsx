@@ -3,7 +3,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { ConfigPanel } from './ConfigPanel'
 import { PreviewPanel } from './PreviewPanel'
 import { ExportPanel } from './ExportPanel'
-import { QRCodeConfig, QRInputData, WifiData, GeoData, CalendarData, SmsData, CryptoData } from '../../types/qr'
+import { QRCodeConfig, QRInputData, WifiData, GeoData, CalendarData, SmsData, CryptoData, VCardData } from '../../types/qr'
 
 export const QRCodeGenerator: React.FC = () => {
   const [config, setConfig] = useState<QRCodeConfig>({
@@ -64,7 +64,7 @@ export const QRCodeGenerator: React.FC = () => {
       
       case 'vcard':
         if (typeof input.content === 'string') return input.content
-        const vcard = input.content
+        const vcard = input.content as VCardData
         let vcardData = 'BEGIN:VCARD\nVERSION:3.0\n'
         vcardData += `N:${vcard.lastName};${vcard.firstName};;;\n`
         vcardData += `FN:${vcard.firstName} ${vcard.lastName}\n`
